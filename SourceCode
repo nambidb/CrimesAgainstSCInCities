@@ -1,0 +1,15 @@
+library(plotly)
+library(dplyr)
+
+Cities<-c(SCCities$City)
+Y2014<-c(SCCities$'2014')
+Y2015<-c(SCCities$'2015')
+Y2016<-c(SCCities$'2016')
+SCrimesCities <- data.frame(Cities,Y2014,Y2015,Y2016)
+
+p<-plot_ly(SCrimesCities,x=~Cities,y=~Y2014,type='bar',name=2014,text=Y2014,textposition='auto')%>%
++ add_trace(y=~Y2015,name=2015,text=Y2015,textposition='auto')%>%
++ add_trace(y=~Y2016,name=2016,text=Y2016,textposition='auto')%>%
++ layout(yaxis=list(title='Crime Count'),barmode='group',title="Crime/Atrocities Against Scheduled Caste (SCs) 
+In Metropolitan Cities (2014-16)")%>%
++ add_annotations(xref="paper",yref="paper",x=1,y=-0.1,showarrow=F,text="Source : National Crime Records Bureau")
